@@ -6,28 +6,31 @@ const ERROR = 'error';
 
 export interface IAuthor {
     key: string,
-    name: string
+    name: string,
+    bio?: string
 }
 
 export class Author implements IAuthor {
     key: string
     name: string
+    bio?: string
 
-    constructor(key: string, name: string) {
+    constructor(key: string, name: string, bio?: string) {
         this.key = key,
         this.name = name,
+        this.bio = bio
     }
 
 }
 
-const getAuthorByName = async (key: string) => {
+const getBioByKey = async (key: string) => {
   
     try {
       const response = await api.get(`/authors/${key}`);
       return {
         status: SUCCESS,
         message: OK,
-        data: response.data
+        data: response.data.bio ? response.data.bio : ''
       }
     } catch(error) {
       throw {
@@ -39,4 +42,4 @@ const getAuthorByName = async (key: string) => {
     
   }
   
-  export default { getAuthorByName }
+  export default { getBioByKey }

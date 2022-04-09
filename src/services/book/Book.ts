@@ -8,42 +8,49 @@ const ERROR = 'error';
 export interface IBook {
     key: string,
     title: string,
-    author?: IAuthor,
-    publishYear?: Date,
+    author: IAuthor,
+    publishYear: number,
+    isbn: number,
     cover?: string,
-    description?: string,
-    bio?: string
+    description?: string
 }
 
 export class Book implements IBook {
     key: string
     title: string
-    author?: Author
-    publishYear?: Date
+    author: Author
+    publishYear: number
+    isbn: number
     cover?: string
     description?: string
-    bio?: string
 
-    constructor(key: string, title: string, author?: Author, publishYear?: Date, cover?: string, description?: string, bio?: string) {
+    constructor(key: string, title: string, author: Author, publishYear: number, isbn: number, cover?: string, description?: string) {
         this.key = key,
         this.title = title,
         this.author = author,
         this.publishYear = publishYear,
+        this.isbn = isbn,
         this.cover = cover,
-        this.description = description,
-        this.bio = bio
+        this.description = description
     }
 
 }
 
-const searchBooks = async (name: string) => {
+const searchBooks = async (params) => {
 
   try {
-    const response = await api.get(`/search.json?q=${name}`);
+    const response = await api.get(`/search.json?q=${params.name}&page=${params.page}`);
+    let books = [];
+    if(response.data.docs.length > 0){
+      books = response.data.docs.map((book: any) => {
+        return mapBook(book)
+      });
+    }
+
     return {
       status: SUCCESS,
       message: OK,
-      data: response.data
+      data: books
     }
   } catch(error) {
     throw {
@@ -55,14 +62,14 @@ const searchBooks = async (name: string) => {
 
 }
 
-const getBookByName = async (name: string) => {
+const getDescriptionByKey = async (key: string) => {
   
   try {
-    const response = await api.get(`/works/${name}`);
+    const response = await api.get(key);
     return {
       status: SUCCESS,
       message: OK,
-      data: response.data
+      data: response.data.description.value ? response.data.description.value : response.data.description
     }
   } catch(error) {
     throw {
@@ -74,4 +81,23 @@ const getBookByName = async (name: string) => {
   
 }
 
-export default { searchBooks, getBookByName }
+const mapBook = (data: any) => {
+
+  const author = new Author(
+    data.author_key,
+    data.author_name
+  );
+
+  const book = new Book(
+    data.key,
+    data.title,
+    author,
+    data.first_publish_year,
+    data.isbn ? data.isbn.pop() : null
+  ); 
+
+  return book;
+
+}
+
+export default { searchBooks, getDescriptionByKey }
