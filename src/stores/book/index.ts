@@ -15,25 +15,13 @@ export const searchBooks = createAsyncThunk(
   }
 )
 
-export const getDescriptionByKey = createAsyncThunk(
-  'book/getDescriptionByKey',
-  async (key: string, thunkApi) => {
+export const getData = createAsyncThunk(
+  'book/getData',
+  async (params, thunkApi) => {
     try {
-      const response = await BookApi.getDescriptionByKey(key);
-      return response
-    } catch (error) {
-      return thunkApi.rejectWithValue(error);
-    }
-    
-  }
-)
-
-export const getBioByKey = createAsyncThunk(
-  'book/getBioByKey',
-  async (key: string, thunkApi) => {
-    try {
-      const response = await AuthorApi.getBioByKey(key);
-      return response
+      const responseDescription = await BookApi.getDescriptionByKey(params.bookKey);
+      const responseBio = await AuthorApi.getBioByKey(params.authorKey);
+      return {description: responseDescription.data, bio: responseBio.data}
     } catch (error) {
       return thunkApi.rejectWithValue(error);
     }
@@ -89,45 +77,23 @@ const bookSlice = createSlice({
       }
     },
 
-    [getDescriptionByKey.pending]: (state, action) => {
+    [getData.pending]: (state, action) => {
       if (state.loading === false) {
         state.loading = true
       }
     },
-    [getDescriptionByKey.fulfilled]: (state, action) => {
-      if (state.loading === true) {
-        state.loading = false
-        state.bookSelected = { ...state.bookSelected, description: action.payload.data }
-        state.status = action.payload.status
-        state.message = action.payload.message
-      }
-    },
-    [getDescriptionByKey.rejected]: (state, action) => {
-      if (state.loading === true) {
-        state.loading = false
-        state.error = action.payload.error
-        state.status = action.payload.status
-        state.message = action.payload.message
-      }
-    },
-
-    [getBioByKey.pending]: (state, action) => {
-      if (state.loading === false) {
-        state.loading = true
-      }
-    },
-    [getBioByKey.fulfilled]: (state, action) => {
+    [getData.fulfilled]: (state, action) => {
       if (state.loading === true) {
         state.loading = false
         let book = { ...state.bookSelected }
-        book.author.bio = action.payload.data
-        debugger
+        book.author.bio = action.payload.bio
+        book.description = action.payload.description
         state.bookSelected = book
         state.status = action.payload.status
         state.message = action.payload.message
       }
     },
-    [getBioByKey.rejected]: (state, action) => {
+    [getData.rejected]: (state, action) => {
       if (state.loading === true) {
         state.loading = false
         state.error = action.payload.error

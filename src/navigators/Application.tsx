@@ -26,6 +26,10 @@ const ApplicationNavigator = () => {
                     <Stack.Screen 
                         name="BookDetail" 
                         component={BookDetailContainer}
+                        options={{
+                            headerTitleAlign: 'center',
+                            title: 'Book detail'
+                        }}
                     />
                 </Stack.Navigator>  
             </NavigationContainer>

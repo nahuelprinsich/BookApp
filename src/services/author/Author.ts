@@ -30,7 +30,7 @@ const getBioByKey = async (key: string) => {
       return {
         status: SUCCESS,
         message: OK,
-        data: response.data.bio ? response.data.bio : ''
+        data: response.data.bio.value ? response.data.bio.value : response.data.bio
       }
     } catch(error) {
       throw {
@@ -40,6 +40,6 @@ const getBioByKey = async (key: string) => {
       }
     }
     
-  }
+}
   
   export default { getBioByKey }

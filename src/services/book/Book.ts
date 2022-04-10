@@ -46,7 +46,6 @@ const searchBooks = async (params) => {
         return mapBook(book)
       });
     }
-
     return {
       status: SUCCESS,
       message: OK,
@@ -84,8 +83,8 @@ const getDescriptionByKey = async (key: string) => {
 const mapBook = (data: any) => {
 
   const author = new Author(
-    data.author_key,
-    data.author_name
+    data.author_key ? data.author_key.shift() : 'not determined',
+    data.author_name ? data.author_name.shift() : 'not determined'
   );
 
   const book = new Book(

@@ -1,43 +1,29 @@
 import React, { useEffect } from 'react';
-import { View, Text, Image, ScrollView } from 'react-native';
-import Config from 'react-native-config';
+import { View } from 'react-native';
 
-import { useBooks } from '../../hooks/useBooks';
+import BookDetail from '../../components/bookDetail/BookDetail';
+import Spinner from '../../components/spinner/Spinner';
+import { useBook } from '../../hooks/useBook';
+import styles from './styles';
 
-const BookDetail = ({ route }) => {
+const BookDetailContainer = ({ route }) => {
 
-    const { bookSelected, loading, getDescription } = useBooks();
+    const { loading, getBookData } = useBook();
 
     const { book } = route.params;
 
     useEffect(() => {
         if(!!book){
-            getDescription(book);
+            getBookData(book);
         }
     }, [book]);
 
     return (
-        <ScrollView>
-            {
-                bookSelected &&
-                <View>
-                    {
-                        bookSelected.isbn && <Image source={{uri: Config.COVERAPI_HOST + `${bookSelected.isbn}-M.jpg`}} style={{width: 100, height: 100}}/>
-                    }
-                    <Text>***</Text>
-                    <Text>{bookSelected.title}</Text>
-                    <Text>***</Text>
-                    <Text>{bookSelected.publishYear}</Text>
-                    <Text>***</Text>
-                    <Text>{bookSelected.description || ''}</Text>
-                    <Text>***</Text>
-                    <Text>{bookSelected.author && bookSelected.author.name && bookSelected.author.name}</Text>
-                    <Text>***</Text>
-                    <Text>{bookSelected.author && bookSelected.author.bio && bookSelected.author.bio}</Text>
-                </View>
-            }
-        </ScrollView>
+        <View style={styles.container}>
+            { loading && <Spinner/> }
+            <BookDetail/>
+        </View>
     )
 }
 
-export default BookDetail
+export default BookDetailContainer
