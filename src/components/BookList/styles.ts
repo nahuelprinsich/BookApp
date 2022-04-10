@@ -30,6 +30,14 @@ const styles = StyleSheet.create({
         width: '40%', 
         alignSelf: 'center',
         marginTop: 5
+    },
+    spinnerContainer: {
+        position: 'absolute', 
+        bottom: 0, 
+        backgroundColor: 'grey', 
+        height: 100, width: windowWidth, 
+        justifyContent: 'center',
+        paddingBottom: 50
     }
 });
 

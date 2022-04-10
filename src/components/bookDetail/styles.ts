@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         alignItems: 'center', 
         justifyContent: 'center',
         alignContent: 'center',
-        paddingHorizontal: 10,
+        paddingHorizontal: 20,
         paddingTop: 5
     },
     title: {
@@ -47,6 +47,9 @@ const styles = StyleSheet.create({
     subtitle: {
         fontWeight: 'bold',
         marginBottom: 10
+    },
+    bio: {
+        marginBottom: 20
     }
 });
 

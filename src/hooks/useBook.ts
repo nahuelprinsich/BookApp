@@ -7,7 +7,6 @@ import { searchBooks, resetSearch, setBookSelected, getData } from "../stores/bo
 const useBook = () => {
 
     const [ page, setPage ] = useState<number>(1);
-    const [ searchText, setSearchText ] = useState<string>();
     const { books, bookSelected, lastBook, loading } = useSelector((state) => state.book);
 
     const dispatch = useDispatch();
@@ -15,7 +14,6 @@ const useBook = () => {
     const search = (name: string, page: number) => {
         if(name && name.length > 3) {
             setPage(page);
-            setSearchText(name);
             page === 1 && dispatch(resetSearch(false));
             !lastBook && dispatch(searchBooks({
                 name: name.split(' ').join('+'), 
@@ -29,7 +27,7 @@ const useBook = () => {
         dispatch(getData({bookKey: book.key, authorKey: book.author.key}));
     }
 
-    return { books, searchText, page, bookSelected, loading, setSearchText, setPage, search, getBookData }
+    return { books, page, bookSelected, loading, setPage, search, getBookData }
 
 }
 

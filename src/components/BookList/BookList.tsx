@@ -1,13 +1,13 @@
 import React from "react"
-import { View, FlatList, TouchableOpacity, Text } from 'react-native'
+import { View, FlatList, TouchableOpacity, Text, ActivityIndicator } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 
 import { useBook } from "../../hooks/useBook";
 import styles from './styles';
 
-const BookList = () => {
+const BookList = ({searchText}) => {
 
-    const { books, page, searchText, search } = useBook();
+    const { loading, books, page, search } = useBook();
 
     const navigation = useNavigation();
 
@@ -27,12 +27,20 @@ const BookList = () => {
     };
 
     return (
-        <FlatList
-            data={books}
-            renderItem={renderBook}
-            keyExtractor={item => item.key}
-            onEndReached={() => search(searchText, page + 1)}
-        />
+        <>
+            <FlatList
+                data={books}
+                renderItem={renderBook}
+                keyExtractor={item => item.key}
+                onEndReached={() => search(searchText, page + 1)}
+            />
+            { 
+                loading && 
+                <View style={styles.spinnerContainer}>
+                    <ActivityIndicator size="small" color="white"/>
+                </View>
+            }
+        </>
     )
 }
 

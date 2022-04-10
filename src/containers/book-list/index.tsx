@@ -1,6 +1,5 @@
-import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import React, { useState } from 'react';
+import { View } from 'react-native';
 
 import { useBook } from '../../hooks/useBook';
 import SearchBar from '../../components/searchBar/SearchBar';
@@ -9,13 +8,14 @@ import Spinner from '../../components/spinner/Spinner';
 
 const BookListContainer = () => {
 
-    const { loading } = useBook();
+    const [ searchText, setSearchText ] = useState('')
+    const { books, loading } = useBook();
 
     return (
         <View>
-            <SearchBar/>
+            <SearchBar searchText={searchText} setSearchText={setSearchText}/>
             {
-                loading ? <Spinner/> : <BookList/>
+                loading && books.length === 0 ? <Spinner/> : <BookList searchText={searchText}/>
             }
         </View>
     )

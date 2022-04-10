@@ -1,12 +1,12 @@
-import React, { useState } from "react"
+import React from "react"
 import { View, TextInput, Image } from 'react-native'
 
 import { useBook } from "../../hooks/useBook";
 import styles from './styles';
 
-const SearchBar = () => {
+const SearchBar = ({searchText, setSearchText}) => {
 
-    const { searchText, search } = useBook();
+    const { search } = useBook();
 
     return (
         <View style={styles.container}>
@@ -14,7 +14,10 @@ const SearchBar = () => {
                 <Image source={require('../../assets/images/search.png')} style={styles.image}/>
                 <TextInput
                     style={styles.text}
-                    onChangeText={(value) => search(value, 1)}
+                    onChangeText={(value) => {
+                        setSearchText(value)
+                        search(value, 1)
+                    }}
                     value={searchText}
                 /> 
             </View>
