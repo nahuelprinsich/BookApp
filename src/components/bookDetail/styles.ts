@@ -31,7 +31,8 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: 'bold',
         fontSize: 20,
-        marginTop: 20
+        marginTop: 20,
+        color: 'grey'
     },
     line: { 
         borderBottomColor: '#333333', 
@@ -43,13 +44,19 @@ const styles = StyleSheet.create({
     },
     text: {
         fontWeight: 'bold',
+        color: 'grey'
     },
     subtitle: {
         fontWeight: 'bold',
-        marginBottom: 10
+        marginBottom: 10,
+        color: 'grey'
     },
     bio: {
-        marginBottom: 20
+        marginBottom: 20,
+        color: 'grey'
+    },
+    lightText: {
+        color: 'grey'
     }
 });
 

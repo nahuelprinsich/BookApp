@@ -14,15 +14,18 @@ const styles = StyleSheet.create({
     title: {
         textAlign: 'center',
         fontWeight: 'bold',
-        fontSize: 20
+        fontSize: 20,
+        color: 'grey'
     },
     author: {
         textAlign: 'center',
-        fontSize: 15
+        fontSize: 15,
+        color: 'grey'
     },
     year: {
         textAlign: 'center',
-        fontSize: 10
+        fontSize: 10,
+        color: 'grey'
     },
     line: { 
         borderBottomColor: '#333333', 

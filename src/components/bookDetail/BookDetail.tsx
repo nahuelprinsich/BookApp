@@ -28,10 +28,10 @@ const BookDetail = () => {
                 <Text style={styles.text}>{'Published in: ' + bookSelected.publishYear}</Text>
                 <View style={styles.line}></View>
                 <Text style={styles.subtitle}>Description</Text>
-                <Text>{bookSelected.description || 'Description not available'}</Text>
+                <Text style={styles.lightText}>{bookSelected.description || 'Description not available'}</Text>
                 <View style={styles.line}></View>
                 <Text style={styles.subtitle}>Author</Text>
-                <Text>{bookSelected.author && bookSelected.author.name && bookSelected.author.name || 'Author not available'}</Text>
+                <Text style={styles.lightText}>{bookSelected.author && bookSelected.author.name && bookSelected.author.name || 'Author not available'}</Text>
                 <View style={styles.line}></View>
                 <Text style={styles.subtitle}>Bio</Text>
                 <Text style={styles.bio}>{bookSelected.author && bookSelected.author.bio && bookSelected.author.bio || 'Bio not available'}</Text>
