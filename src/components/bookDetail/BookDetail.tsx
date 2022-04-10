@@ -3,6 +3,7 @@ import { View, ScrollView, Image, Text } from 'react-native'
 import Config from 'react-native-config';
 
 import { useBook } from "../../hooks/useBook";
+import Line from "../line/Line";
 import styles from './styles';
 
 const BookDetail = () => {
@@ -24,15 +25,15 @@ const BookDetail = () => {
             }
             <View style={styles.dataContainer}>
                 <Text style={styles.title}>{bookSelected.title}</Text>
-                <View style={styles.line}></View>
+                <Line/>
                 <Text style={styles.text}>{'Published in: ' + bookSelected.publishYear}</Text>
-                <View style={styles.line}></View>
+                <Line/>
                 <Text style={styles.subtitle}>Description</Text>
                 <Text style={styles.lightText}>{bookSelected.description || 'Description not available'}</Text>
-                <View style={styles.line}></View>
+                <Line/>
                 <Text style={styles.subtitle}>Author</Text>
                 <Text style={styles.lightText}>{bookSelected.author && bookSelected.author.name && bookSelected.author.name || 'Author not available'}</Text>
-                <View style={styles.line}></View>
+                <Line/>
                 <Text style={styles.subtitle}>Bio</Text>
                 <Text style={styles.bio}>{bookSelected.author && bookSelected.author.bio && bookSelected.author.bio || 'Bio not available'}</Text>
             </View>

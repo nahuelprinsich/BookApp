@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import { useBook } from "../../hooks/useBook";
 import styles from './styles';
+import Line from "../line/Line";
 
 const BookList = ({searchText}) => {
 
@@ -21,7 +22,7 @@ const BookList = ({searchText}) => {
                     <Text style={styles.author}>{item.author.name}</Text>
                     <Text style={styles.year}>{item.publishYear}</Text>
                 </TouchableOpacity>
-                <View style={styles.line}></View>
+                <Line/>
             </>
         );
     };

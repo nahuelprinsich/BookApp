@@ -34,14 +34,6 @@ const styles = StyleSheet.create({
         marginTop: 20,
         color: 'grey'
     },
-    line: { 
-        borderBottomColor: '#333333', 
-        borderBottomWidth: 1, 
-        width: '40%', 
-        alignSelf: 'center',
-        marginTop: 20,
-        marginBottom: 20
-    },
     text: {
         fontWeight: 'bold',
         color: 'grey'

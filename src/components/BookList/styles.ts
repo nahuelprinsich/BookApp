@@ -27,13 +27,6 @@ const styles = StyleSheet.create({
         fontSize: 10,
         color: 'grey'
     },
-    line: { 
-        borderBottomColor: '#333333', 
-        borderBottomWidth: 1, 
-        width: '40%', 
-        alignSelf: 'center',
-        marginTop: 5
-    },
     spinnerContainer: {
         position: 'absolute', 
         bottom: 0, 
