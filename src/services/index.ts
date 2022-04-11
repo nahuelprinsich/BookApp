@@ -1,10 +1,10 @@
 import axios from "axios";
-import Config from 'react-native-config'
+import Config from 'react-native-config';
 
 const instance = axios.create({
     headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
     },
     baseURL: Config.BOOKAPI_HOST,
     timeout: 50000,

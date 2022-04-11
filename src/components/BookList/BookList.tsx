@@ -1,10 +1,10 @@
-import React from "react"
-import { View, FlatList, TouchableOpacity, Text, ActivityIndicator } from 'react-native'
+import React from "react";
+import { View, FlatList, TouchableOpacity, Text, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { useBook } from "../../hooks/useBook";
 import styles from './styles';
-import Line from "../line/Line";
+import { Line } from "../";
 
 const BookList = ({searchText}) => {
 
@@ -17,7 +17,8 @@ const BookList = ({searchText}) => {
             <>
                 <TouchableOpacity 
                     style={styles.item}
-                    onPress={() => navigation.navigate('BookDetail', { book: item })}>
+                    onPress={() => navigation.navigate('BookDetail', { book: item })}
+                >
                     <Text style={styles.title}>{item.title}</Text>
                     <Text style={styles.author}>{item.author.name}</Text>
                     <Text style={styles.year}>{item.publishYear}</Text>

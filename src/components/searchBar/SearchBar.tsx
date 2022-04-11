@@ -1,5 +1,5 @@
-import React from "react"
-import { View, TextInput, Image } from 'react-native'
+import React from "react";
+import { View, TextInput, Image } from 'react-native';
 
 import { useBook } from "../../hooks/useBook";
 import styles from './styles';

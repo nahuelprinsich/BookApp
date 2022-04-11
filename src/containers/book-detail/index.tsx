@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { View } from 'react-native';
 
-import BookDetail from '../../components/bookDetail/BookDetail';
-import Spinner from '../../components/spinner/Spinner';
+
+import { BookDetail, Spinner } from '../../components';
 import { useBook } from '../../hooks/useBook';
 import styles from './styles';
 
@@ -20,7 +20,9 @@ const BookDetailContainer = ({ route }) => {
 
     return (
         <View style={styles.container}>
-            { loading && <Spinner/> }
+            { 
+                loading && <Spinner/> 
+            }
             <BookDetail/>
         </View>
     )

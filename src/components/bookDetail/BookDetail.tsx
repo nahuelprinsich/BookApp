@@ -1,9 +1,9 @@
-import React from "react"
-import { View, ScrollView, Image, Text } from 'react-native'
+import React from "react";
+import { View, ScrollView, Image, Text } from 'react-native';
 import Config from 'react-native-config';
 
 import { useBook } from "../../hooks/useBook";
-import Line from "../line/Line";
+import { Line } from "../";
 import styles from './styles';
 
 const BookDetail = () => {
