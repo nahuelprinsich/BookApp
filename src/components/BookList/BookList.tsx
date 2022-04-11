@@ -1,5 +1,5 @@
 import React from "react";
-import { View, FlatList, TouchableOpacity, Text, ActivityIndicator } from 'react-native';
+import { View, FlatList, TouchableOpacity, Text, ActivityIndicator, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { useBook } from "../../hooks/useBook";
@@ -31,11 +31,22 @@ const BookList = ({searchText} : {searchText: string}) => {
 
     return (
         <>
+            {
+                books.length === 0 &&
+                <View style={styles.emptyContainer}>
+                    <Image 
+                        source={require('../../assets/images/book.png')} 
+                        style={styles.image}
+                    />
+                    <Text style={styles.emptyText}>Start searching..</Text>
+                </View>
+            }
             <FlatList
                 data={books}
                 renderItem={renderBook}
                 keyExtractor={item => item.key}
                 onEndReached={() => search(searchText, page + 1)}
+                style={styles.list}
             />
             { 
                 loading && 

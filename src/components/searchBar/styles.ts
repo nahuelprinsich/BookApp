@@ -5,7 +5,7 @@ const windowWidth = Dimensions.get('window').width;
 const styles = StyleSheet.create({
     container: { 
         width: windowWidth,
-        height: 50,
+        height: 80,
         backgroundColor: 'grey',
         alignItems: 'center', 
         justifyContent: 'center',

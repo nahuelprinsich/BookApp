@@ -34,6 +34,23 @@ const styles = StyleSheet.create({
         height: 100, width: windowWidth, 
         justifyContent: 'center',
         paddingBottom: 50
+    },
+    emptyContainer: {
+        height: '100%', 
+        marginTop: 100, 
+        alignItems: 'center'
+    },
+    image: {
+        width: 100, 
+        height: 100
+    },
+    emptyText: {
+        color: 'grey', 
+        fontSize: 20, 
+        fontWeight: 'bold'
+    },
+    list: {
+        paddingTop: 20
     }
 });
 
