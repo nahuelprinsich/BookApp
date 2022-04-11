@@ -58,55 +58,57 @@ const bookSlice = createSlice({
 
         [searchBooks.pending]: (state, action) => {
             if (state.loading === false) {
-                state.loading = true
+                state.loading = true;
+                state.error = null;
             }
         },
 
         [searchBooks.fulfilled]: (state, action) => {
             if (state.loading === true) {
-                state.loading = false
+                state.loading = false;
                 if(action.payload.data.lenght === 0){
-                    state.lastBook = true
+                    state.lastBook = true;
                 }
-                state.books = [...state.books, ...action.payload.data]
-                state.status = action.payload.status
-                state.message = action.payload.message
+                state.books = [...state.books, ...action.payload.data];
+                state.status = action.payload.status;
+                state.message = action.payload.message;
             }
         },
 
         [searchBooks.rejected]: (state, action) => {
             if (state.loading === true) {
-                state.loading = false
-                state.error = action.payload.error
-                state.status = action.payload.status
-                state.message = action.payload.message
+                state.loading = false;
+                state.error = action.payload.error;
+                state.status = action.payload.status;
+                state.message = action.payload.message;
             }
         },
 
         [getData.pending]: (state, action) => {
             if (state.loading === false) {
-                state.loading = true
+                state.loading = true;
+                state.error = null;
             }
         },
 
         [getData.fulfilled]: (state, action) => {
             if (state.loading === true) {
-                state.loading = false
-                let book = { ...state.bookSelected }
-                book.author.bio = action.payload.bio
-                book.description = action.payload.description
-                state.bookSelected = book
-                state.status = action.payload.status
-                state.message = action.payload.message
+                state.loading = false;
+                let book = { ...state.bookSelected };
+                book.author.bio = action.payload.bio;
+                book.description = action.payload.description;
+                state.bookSelected = book;
+                state.status = action.payload.status;
+                state.message = action.payload.message;
             }
         },
 
         [getData.rejected]: (state, action) => {
             if (state.loading === true) {
-                state.loading = false
-                state.error = action.payload.error
-                state.status = action.payload.status
-                state.message = action.payload.message
+                state.loading = false;
+                state.error = action.payload.error;
+                state.status = action.payload.status;
+                state.message = action.payload.message;
             }
         }
 

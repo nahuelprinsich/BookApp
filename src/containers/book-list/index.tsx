@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 
 import { useBook } from '../../hooks/useBook';
-import { SearchBar, Spinner, BookList } from '../../components/';
+import { SearchBar, Spinner, BookList, Alert } from '../../components/';
 
 const BookListContainer = () => {
 
     const [ searchText, setSearchText ] = useState<string>('');
-    const { books, loading } = useBook();
+    const { books, loading, error } = useBook();
 
     return (
         <View>
@@ -17,6 +17,10 @@ const BookListContainer = () => {
                     <Spinner/> 
                 : 
                     <BookList searchText={searchText}/>
+            }
+            {
+                !loading && error &&
+                <Alert/>
             }
         </View>
     )

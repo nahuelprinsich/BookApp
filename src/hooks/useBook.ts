@@ -7,7 +7,7 @@ import { searchBooks, resetSearch, setBookSelected, getData } from "../stores/bo
 const useBook = () => {
 
     const [ page, setPage ] = useState<number>(1);
-    const { books, bookSelected, lastBook, loading } = useSelector((state) => state.book);
+    const { books, bookSelected, lastBook, loading, status, message, error } = useSelector((state) => state.book);
 
     const dispatch = useDispatch();
 
@@ -33,7 +33,7 @@ const useBook = () => {
         }));
     }
 
-    return { books, page, bookSelected, loading, setPage, search, getBookData }
+    return { books, page, bookSelected, loading, status, message, error, setPage, search, getBookData }
 
 }
 
