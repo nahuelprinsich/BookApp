@@ -4,7 +4,7 @@ import { View, TextInput, Image } from 'react-native';
 import { useBook } from "../../hooks/useBook";
 import styles from './styles';
 
-const SearchBar = ({searchText, setSearchText}) => {
+const SearchBar = ({searchText, setSearchText} : {searchText: string, setSearchText: React.Dispatch<React.SetStateAction<string>>}) => {
 
     const { search } = useBook();
 

@@ -5,14 +5,15 @@ import { useNavigation } from '@react-navigation/native';
 import { useBook } from "../../hooks/useBook";
 import styles from './styles';
 import { Line } from "../";
+import { Book } from "../../services/models";
 
-const BookList = ({searchText}) => {
+const BookList = ({searchText} : {searchText: string}) => {
 
     const { loading, books, page, search } = useBook();
 
     const navigation = useNavigation();
 
-    const renderBook = ({ item }) => {
+    const renderBook = ({ item } : {item: Book}) => {
         return (
             <>
                 <TouchableOpacity 

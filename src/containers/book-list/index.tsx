@@ -6,7 +6,7 @@ import { SearchBar, Spinner, BookList } from '../../components/';
 
 const BookListContainer = () => {
 
-    const [ searchText, setSearchText ] = useState('');
+    const [ searchText, setSearchText ] = useState<string>('');
     const { books, loading } = useBook();
 
     return (

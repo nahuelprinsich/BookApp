@@ -5,7 +5,7 @@ import { AuthorApi } from '../../services/author';
 
 export const searchBooks = createAsyncThunk(
     'book/searchBooks',
-    async (params, thunkApi) => {
+    async (params: {name: string, page: number}, thunkApi) => {
         try {
             const response = await BookApi.searchBooks(params);
             return response;
@@ -18,7 +18,7 @@ export const searchBooks = createAsyncThunk(
 
 export const getData = createAsyncThunk(
     'book/getData',
-    async (params, thunkApi) => {
+    async (params: {bookKey: string, authorKey: string}, thunkApi) => {
         try {
             const responseDescription = await BookApi.getDescriptionByKey(params.bookKey);
             const responseBio = await AuthorApi.getBioByKey(params.authorKey);
@@ -100,7 +100,7 @@ const bookSlice = createSlice({
                 state.message = action.payload.message
             }
         },
-        
+
         [getData.rejected]: (state, action) => {
             if (state.loading === true) {
                 state.loading = false

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Book } from "../services/book/Book";
+import { Book } from "../services/models";
 import { searchBooks, resetSearch, setBookSelected, getData } from "../stores/book";
 
 const useBook = () => {

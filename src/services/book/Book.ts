@@ -5,7 +5,7 @@ const SUCCESS = 'success';
 const OK = 'OK';
 const ERROR = 'error';
 
-const searchBooks = async (params) => {
+const searchBooks = async (params: {name: string, page: number}) => {
 
     try {
         const response = await api.get(`/search.json?q=${params.name}&page=${params.page}`);
